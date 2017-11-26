@@ -11,6 +11,10 @@ namespace EmailGenerator.Services
 {
     /// <summary>
     /// http://mehdi.me/generating-html-emails-with-razorengine-basics-generating-your-first-email/
+    /// 
+    /// https://stackoverflow.com/questions/7027469/media-media-query-and-asp-net-mvc-razor-syntax-clash
+    /// 
+    /// https://github.com/TedGoas/Cerberus/blob/master/cerberus-fluid.html
     /// </summary>
     public class EmailTemplateService : IEmailTemplateService
     {
