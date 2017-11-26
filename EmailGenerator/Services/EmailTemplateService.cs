@@ -7,7 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using PreMailer.Net;
 namespace EmailGenerator.Services
 {
     /// <summary>
@@ -47,7 +47,14 @@ namespace EmailGenerator.Services
             //var TemplateService = new TemplateService();
             var emailHtmlBody = TemplateService.Parse(File.ReadAllText(templateFilePath), model, null, "Email");
 
-            return emailHtmlBody;
+            /*
+                Move CSS Inline.  https://github.com/milkshakesoftware/PreMailer.Net
+            */
+            var pm = new PreMailer.Net.PreMailer(emailHtmlBody);
+            //pm.AddAnalyticsTags(source, medium, campaign, content, domain = null); // Optional to add analytics tags
+            var result = pm.MoveCssInline();
+
+            return result.Html;
         }
     }
 }
