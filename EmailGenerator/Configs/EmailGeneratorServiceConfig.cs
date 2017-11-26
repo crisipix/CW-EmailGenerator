@@ -16,9 +16,9 @@ namespace EmailGenerator.Configs
             // Usually you're only interested in exposing the type
             // http://stackoverflow.com/questions/15226536/register-generic-type-with-autofac
             // via its interface:
-            builder.RegisterType<EmailTemplateService>().As<IEmailTemplateService>();
-            builder.RegisterType<TemplateService>().As<ITemplateService>();
-            builder.RegisterType<EmailService>().As<IEmailService>();
+            builder.RegisterType<EmailTemplateService>().As<IEmailTemplateService>().InstancePerLifetimeScope();
+            builder.RegisterType<TemplateService>().As<ITemplateService>().SingleInstance();
+            builder.RegisterType<EmailService>().As<IEmailService>().InstancePerLifetimeScope();
             
 
         }
