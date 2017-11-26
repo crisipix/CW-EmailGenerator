@@ -18,6 +18,7 @@ namespace EmailGenerator.Configs
             // via its interface:
             builder.RegisterType<EmailTemplateService>().As<IEmailTemplateService>();
             builder.RegisterType<TemplateService>().As<ITemplateService>();
+            builder.RegisterType<EmailService>().As<IEmailService>();
             
 
         }

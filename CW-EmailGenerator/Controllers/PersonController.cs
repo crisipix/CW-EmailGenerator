@@ -19,13 +19,16 @@ namespace CW_EmailGenerator.Controllers
         private readonly ILog _log;
 
         private readonly IPersonService _service;
-        private readonly IEmailTemplateService _emailService;
+        private readonly IEmailTemplateService _emailTemplateService;
+        private readonly IEmailService _emailService;
 
         public PersonController(IPersonService service,
-                                IEmailTemplateService emailService,
+                                IEmailTemplateService emailTemplateService,
+                                IEmailService emailService,
             ILog log)
         {
             _service = service;
+            _emailTemplateService = emailTemplateService;
             _emailService = emailService;
             _log = log;
         }
@@ -40,11 +43,15 @@ namespace CW_EmailGenerator.Controllers
         }
 
         [HttpGet]
-        [Route("EmailPerson")]
+        [Route("Email")]
         public async Task EmailPeople()
         {
             _log.Debug("Email Person");
-            _emailService.GenerateEmailBody();
+            var model = new PersonModel() { Name = "Sarah", Email = "sarah@mail.example", CanVote = false };
+
+            var body =_emailTemplateService.GenerateEmailBody(model);
+
+            await _emailService.SendEmail(model, body);
         }
 
         //[HttpGet]

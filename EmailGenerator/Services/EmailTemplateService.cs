@@ -1,4 +1,5 @@
 ﻿using EmailGenerator.DataAccess.Models;
+using log4net;
 using RazorEngine.Templating;
 using System;
 using System.Collections.Generic;
@@ -21,20 +22,24 @@ namespace EmailGenerator.Services
         /// <summary>
         /// </summary>
         protected ITemplateService TemplateService { get; }
-
+        private readonly ILog _log;
+     
         /// <summary>
         /// </summary>
         /// <param name="templateService"></param>
         public EmailTemplateService(
-            ITemplateService templateService
-            )
+            ITemplateService templateService,
+            
+            ILog log)
         {
             TemplateService = templateService;
+            
+            _log = log;
+
         }
 
-        public string GenerateEmailBody() {
+        public string GenerateEmailBody(PersonModel model) {
             // Create a model for our email
-            var model = new PersonModel() { Name = "Sarah", Email = "sarah@mail.example", CanVote= false };
             var templateFolderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"bin", "EmailTemplates");
             var templateFilePath = Path.Combine(templateFolderPath, "Email.cshtml");
             // Generate the email body from the template file.

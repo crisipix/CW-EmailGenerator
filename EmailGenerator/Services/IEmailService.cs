@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace EmailGenerator.Services
 {
-    public interface IEmailTemplateService
+    public interface IEmailService
     {
-        string GenerateEmailBody(PersonModel model);
+        Task SendEmail(PersonModel person, string body);
     }
 }
