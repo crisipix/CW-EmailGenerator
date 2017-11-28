@@ -16,6 +16,7 @@ namespace EmailGenerator.Services
     /// https://stackoverflow.com/questions/7027469/media-media-query-and-asp-net-mvc-razor-syntax-clash
     /// 
     /// https://github.com/TedGoas/Cerberus/blob/master/cerberus-fluid.html
+    /// https://antaris.github.io/RazorEngine/Upgrading.html
     /// </summary>
     public class EmailTemplateService : IEmailTemplateService
     {
